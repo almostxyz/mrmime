@@ -29,7 +29,7 @@ const asanaRouter = t.router({
     handshake: t.procedure
         .use(addSecretAsanaHeader)
         .mutation(() => {
-            
+            console.log('handshake hit')
         })
 })
 
