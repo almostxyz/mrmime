@@ -1,29 +1,45 @@
-import { initTRPC, inferAsyncReturnType } from "@trpc/server";
+import { initTRPC, inferAsyncReturnType, TRPCError } from "@trpc/server";
 import { z } from "zod";
 import * as trpcExpress from '@trpc/server/adapters/express';
 import express from 'express'
 
 // created for each request
-const createContext = ({
+export const createContext = ({
     req,
     res,
-  }: trpcExpress.CreateExpressContextOptions) => ({}); // no context
-  type Context = inferAsyncReturnType<typeof createContext>;
+  }: trpcExpress.CreateExpressContextOptions) => ({req, res});
 
-const t = initTRPC()()
+type Context = inferAsyncReturnType<typeof createContext>;
+
+const t = initTRPC<{ctx: Context}>()()
+
+const addSecretAsanaHeader = t.middleware(async ({ ctx, next }) => {
+    const secret = ctx.req.header('X-Hook-Secret')
+    if (secret) {
+        ctx.res.setHeader('X-Hook-Secret', secret)
+    } else {
+        ctx.res.status(204)
+    }
+    return next({
+      ctx
+    });
+  });
+
+const asanaRouter = t.router({
+    handshake: t.procedure
+        .use(addSecretAsanaHeader)
+        .mutation(() => {
+            
+        })
+})
+
+const gitlabRouter = t.router({
+    test: t.procedure.mutation(() => {})
+})
 
 const appRouter = t.router({
-    asana: t.procedure
-        .input(z.string)
-        .mutation((req) => {
-
-        }),
-
-    gitlab: t.procedure
-        .input(z.string)
-        .mutation((req) => {
-
-        })
+    asana: asanaRouter,
+    gitlab: gitlabRouter,
 })
 
 // probably useless
@@ -32,11 +48,21 @@ export type AppRouter = typeof appRouter
 const app = express()
 
 app.use(
-    '/trpc',
+    '/trpc/asana',
     trpcExpress.createExpressMiddleware({
-        router: appRouter,
+        router: appRouter.asana,
         createContext
     })
 )
 
+app.use(
+  '/trpc/gitlab',
+  trpcExpress.createExpressMiddleware({
+    router: appRouter.gitlab,
+    createContext
+  })
+)
+
 app.listen(4000)
+
+console.log('server started on port 4000...')
