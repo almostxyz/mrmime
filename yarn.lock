@@ -33,9 +33,9 @@
   integrity sha512-tefRwCVDwLqk0WrBLErYR26uKKxzLSlKvRyADFiQn/fizJhqk9nxMXH8F6SE4w6r/szUQTzIJ4vheJKQ4dYKpw==
 
 "@trpc/server@^10.0.0-alpha.42":
-  version "10.0.0-alpha.42"
-  resolved "https://registry.yarnpkg.com/@trpc/server/-/server-10.0.0-alpha.42.tgz#e7902edefe086c00b8e38b3101d749577a7d84b6"
-  integrity sha512-/G+IGBoxUQEayKVNBiHUBCwH7Cem6ITDZPa85HtwAuIUVRT8Q0VEC15iBT/kUNNFhzPRHVm6y3mrDPoJ1Gs97Q==
+  version "10.0.0-alpha.43"
+  resolved "https://registry.yarnpkg.com/@trpc/server/-/server-10.0.0-alpha.43.tgz#35929d126d41febf6be30e4dbb8370e481f17b03"
+  integrity sha512-IP07edxSwRST/usSG/L9PlY3GJZNwQjOY35SuQO12p1ng9kTo85U3ZmDbnAvY4yLp/oZcNp3lah+Gc0prhnLoQ==
   dependencies:
     tslib "^2.1.0"
 
@@ -605,6 +605,6 @@ yn@3.1.1:
   integrity sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==
 
 zod@^3.17.10:
-  version "3.17.10"
-  resolved "https://registry.yarnpkg.com/zod/-/zod-3.17.10.tgz#8716a05e6869df6faaa878a44ffe3c79e615defb"
-  integrity sha512-IHXnQYQuOOOL/XgHhgl8YjNxBHi3xX0mVcHmqsvJgcxKkEczPshoWdxqyFwsARpf41E0v9U95WUROqsHHxt0UQ==
+  version "3.18.0"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-3.18.0.tgz#2eed58b3cafb8d9a67aa2fee69279702f584f3bc"
+  integrity sha512-gwTm8RfUCe8l9rDwN5r2A17DkAa8Ez4Yl4yXqc5VqeGaXaJahzYYXbTwvhroZi0SNBqTwh/bKm2N0mpCzuw4bA==
